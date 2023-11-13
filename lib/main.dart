@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getx_begginer/controller.dart';
 import 'package:get/get.dart';
+import 'package:getx_begginer/personal_card_widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,50 +13,8 @@ class MyApp extends StatelessWidget {
     // Controller controller = Get.put(Controller());
     // GetBuilder<Controller> ( init : Controller(),), 와 동일
 
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('GetX'),
-          ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GetBuilder<Controller>(
-                  init: Controller(),
-                  builder: (_) => Text.rich(
-                    TextSpan(
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: 'Current value is: ',
-                        ),
-                        TextSpan(
-                          text: '${Get.find<Controller>().x}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Get.find<Controller>().increment();
-                  },
-                  child: Text('Add number'),
-                ),
-              ],
-            ),
-          )),
+    return GetMaterialApp(
+      home: PersonalCard(),
     );
   }
 }
