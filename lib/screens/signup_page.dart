@@ -7,6 +7,9 @@ class SignupPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var emailController = TextEditingController();
+    var passwordController = TextEditingController();
+
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -46,6 +49,7 @@ class SignupPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                             border: InputBorder.none, hintText: 'Email'),
                       ),
@@ -65,6 +69,7 @@ class SignupPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                             border: InputBorder.none, hintText: 'Password'),
@@ -107,6 +112,7 @@ class SignupPage extends StatelessWidget {
                     Text('Already registered?'),
                     GestureDetector(
                       onTap: () => Get.back(),
+                      // Get.back();: 스낵바, 다이얼로그, bottomsheets 또는 Navigator.pop(context);로 닫아야 하는 어떤것도 닫게함
                       child: Text(
                         ' Go back Login page!',
                         style: TextStyle(

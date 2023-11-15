@@ -9,10 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons:
+  google_fonts:
+  cloud_firestore:
+  firebase_core:
+  firebase_auth:
   get:
   http:
-  cloud_firestore:
-  google_fonts:
 
 dev_dependencies:
   flutter_test:

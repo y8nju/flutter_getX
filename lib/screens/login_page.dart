@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getx_begginer/controllers/auth_controller.dart';
 import '../screens/signup_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
@@ -87,7 +88,8 @@ class LoginPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    //AuthController.instance.login(emailController.text.trim(), passwordController.text.trim());
+                    // AuthController.instance.login(emailController.text.trim(),
+                    //     passwordController.text.trim());
                   },
                   child: Container(
                     child: Padding(
@@ -119,6 +121,7 @@ class LoginPage extends StatelessWidget {
                     Text('Not a member?'),
                     GestureDetector(
                       onTap: () => Get.to(() => SignupPage()),
+                      // Get.to(NextScreen());: 새로운 화면으로 이동
                       child: Text(
                         ' Register Now!',
                         style: TextStyle(
