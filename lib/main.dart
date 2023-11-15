@@ -9,10 +9,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // WidgetFlutterBinding는 Flutter Engine과의 상호작용을 위해 사용된다.
   // ensureInitialized()를 호출하여 플랫폼 채널의 위젯 바인딩을 보장해야한다.
-  await Firebase.initializeApp()
-      .then((value) => Get.lazyPut(() => AuthController()));
+
+  await initializeDefault();
+  // await Firebase.initializeApp();
+  //     .then((value) => Get.lazyPut(() => AuthController()));
+  Get.lazyPut(() => AuthController());
   // Firebase를 초기화
   runApp(const MyApp());
+}
+
+Future<void> initializeDefault() async {
+  FirebaseApp app = await Firebase.initializeApp();
+  print('Initialized default app $app');
 }
 
 class MyApp extends StatelessWidget {
