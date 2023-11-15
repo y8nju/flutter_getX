@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   get:
   http:
+  cloud_firestore:
+  google_fonts:
 
 dev_dependencies:
   flutter_test:

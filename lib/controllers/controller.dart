@@ -4,7 +4,7 @@ import '../utils/services.dart';
 
 class Controller extends GetxController {
   var productList = <Product>[].obs;
-  var isLoading = true.obs;
+  var isLoading = true.obs; // 로딩 화면 제어 할 수 있도록 설정한 변수
 
   @override
   void onInit() {

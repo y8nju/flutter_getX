@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_begginer/views/mypage.dart';
+import 'package:getx_begginer/screens/mypage.dart';
 
 void main() => runApp(MyApp());
 
