@@ -4,23 +4,17 @@ import 'package:get/get.dart';
 import 'package:getx_begginer/controllers/auth_controller.dart';
 import 'package:getx_begginer/screens/login_page.dart';
 import 'package:getx_begginer/screens/mypage.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // WidgetFlutterBinding는 Flutter Engine과의 상호작용을 위해 사용된다.
   // ensureInitialized()를 호출하여 플랫폼 채널의 위젯 바인딩을 보장해야한다.
-
-  await initializeDefault();
-  // await Firebase.initializeApp();
-  //     .then((value) => Get.lazyPut(() => AuthController()));
-  Get.lazyPut(() => AuthController());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.android,
+  ).then((value) => Get.lazyPut(() => AuthController()));
   // Firebase를 초기화
   runApp(const MyApp());
-}
-
-Future<void> initializeDefault() async {
-  FirebaseApp app = await Firebase.initializeApp();
-  print('Initialized default app $app');
 }
 
 class MyApp extends StatelessWidget {
