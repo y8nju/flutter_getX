@@ -88,8 +88,8 @@ class LoginPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // AuthController.instance.login(emailController.text.trim(),
-                    //     passwordController.text.trim());
+                    AuthController.instance.login(emailController.text.trim(),
+                        passwordController.text.trim());
                   },
                   child: Container(
                     child: Padding(
@@ -100,12 +100,23 @@ class LoginPage extends StatelessWidget {
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(12)),
                         child: Center(
-                          child: Text(
-                            'Sign in',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                          child: Obx(
+                            () => AuthController.instance.isLoading.value
+                                ? SizedBox(
+                                    width: 16,
+                                    height: 16,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : Text(
+                                    'Sign in',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                           ),
                         ),
                       ),

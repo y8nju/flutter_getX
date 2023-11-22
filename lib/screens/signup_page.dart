@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getx_begginer/controllers/auth_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,7 @@ class SignupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
+    var nameController = TextEditingController();
 
     return Scaffold(
       backgroundColor: Colors.grey[300],
@@ -37,6 +39,27 @@ class SignupPage extends StatelessWidget {
                     style: GoogleFonts.bebasNeue(fontSize: 28)),
                 SizedBox(
                   height: 50,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: TextField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                            border: InputBorder.none, hintText: 'Name'),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -81,7 +104,12 @@ class SignupPage extends StatelessWidget {
                   height: 10,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    AuthController.instance.register(
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                        nameController.text.trim());
+                  },
                   child: Container(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25.0),
@@ -91,12 +119,23 @@ class SignupPage extends StatelessWidget {
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(12)),
                         child: Center(
-                          child: Text(
-                            'Sign up',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                          child: Obx(
+                            () => AuthController.instance.isLoading.value
+                                ? SizedBox(
+                                    width: 16,
+                                    height: 16,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : Text(
+                                    'Sign up',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                           ),
                         ),
                       ),

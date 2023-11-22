@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +12,14 @@ class AuthController extends GetxController {
   // 백만개의 인스턴스화 contrller를 가질수 있고 Get은 올바른 controller를 항상 가져다 줄 것입니다.
   late Rx<User?> _user;
   // User: FirebaseAuthentication, firebase 인스턴스
+  // 사용자의 정보를 가지고 있다
   FirebaseAuth authentication = FirebaseAuth.instance;
+  Rx<User?> get user => _user;
+  // Firestore 인스턴스
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+  var isLoading = false.obs;
+  var userProfile = {}.obs;
 
   @override
   void onReady() {
@@ -22,6 +30,7 @@ class AuthController extends GetxController {
     // _user 변수 초기화(사용자의 정보 전달)
     _user = Rx<User?>(authentication.currentUser);
     // Rx<User?>로 타입 캐스팅
+
     // 유저 행동 정보 실시간 추적(전달): 로그인/로그아웃
     _user.bindStream(authentication.userChanges());
 
@@ -32,20 +41,34 @@ class AuthController extends GetxController {
   _moveToPage(User? user) {
     if (user == null) {
       // 로그인 한 사용자가 없다면, 로그인 페이지로 이동
+      // Get.offAll(() => NextPage());: 이전 페이지 모두 삭제 후 이동
       Get.offAll(() => LoginPage());
     } else {
+      // Get.to(() => NextPage());: 기본 이동
       Get.to(() => WelcomePage());
     }
   }
 
-  void register(String email, password) async {
+  // 회원가입 및 로그인 기능
+  void register(String email, password, name) async {
     try {
+      isLoading(true);
       await authentication.createUserWithEmailAndPassword(
           email: email, password: password);
+
+      String userId = authentication.currentUser!.uid; // user uid
+
+      // Firestore 의 profiles collection에 user의 name 저장
+      await db.collection('profiles').doc(userId).set({
+        'name': name,
+      });
+
+      isLoading(false);
     } catch (e) {
+      // 로그인 실패
       Get.snackbar(
         'Error Message',
-        "User Message",
+        'User Message',
         backgroundColor: Colors.red,
         snackPosition: SnackPosition.BOTTOM,
         titleText: Text(
@@ -65,7 +88,53 @@ class AuthController extends GetxController {
   }
 
   void logout() {
+    isLoading(true);
     authentication.signOut();
+    isLoading(false);
+  }
+
+  void login(String email, password) async {
+    try {
+      isLoading(true);
+      await authentication.signInWithEmailAndPassword(
+          email: email, password: password);
+      isLoading(false);
+
+      String userId = authentication.currentUser!.uid;
+      await getUserName(userId);
+    } catch (e) {
+      Get.snackbar(
+        'Error Message',
+        'User Message',
+        backgroundColor: Colors.red,
+        snackPosition: SnackPosition.BOTTOM,
+        titleText: Text(
+          'Login is falled',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        messageText: Text(
+          e.toString(),
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      );
+    }
+  }
+
+  getUserName(String userId) async {
+    final docRef = await db.collection('profiles').doc(userId);
+    final doc = await docRef.get();
+
+    if (doc.exists) {
+      final data = doc.data() as Map<String, dynamic>;
+      print(data);
+      userProfile.value = data;
+    } else {
+      print('No document found for user: $userId');
+    }
   }
 }
 
