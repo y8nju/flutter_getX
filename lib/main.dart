@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:getx_begginer/controller.dart';
-import 'package:get/get.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,48 +12,67 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('GetX'),
+        appBar: AppBar(
+          title: const Text('GetX exmaple'),
+        ),
+        body: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '1. 코딩셰프',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'branch: codingchef',
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                'branch: shop_lecture',
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                'branch: getX_practice',
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                'branch: ReactiveStatemanager',
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              Text(
+                '2. dbestech',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'branch: dbestech',
+              ),
+              SizedBox(
+                height: 80,
+              ),
+            ],
           ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GetBuilder<Controller>(
-                  init: Controller(),
-                  builder: (_) => Text.rich(
-                    TextSpan(
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: 'Current value is: ',
-                        ),
-                        TextSpan(
-                          text: '${Get.find<Controller>().x}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Get.find<Controller>().increment();
-                  },
-                  child: Text('Add number'),
-                ),
-              ],
-            ),
-          )),
+        ),
+      ),
     );
   }
 }
