@@ -1,19 +1,5 @@
 # getX_begginer
 
-A new Flutter project created with FlutLab - https://flutlab.io
-
-## Getting Started
-
-A few resources to get you started if this is your first Flutter project:
-
-- https://flutter.dev/docs/get-started/codelab
-- https://flutter.dev/docs/cookbook
-
-For help getting started with Flutter, view our
-https://flutter.dev/docs, which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-## Getting Started: FlutLab - Flutter Online IDE
-
-- How to use FlutLab? Please, view our https://flutlab.io/docs
-- Join the discussion and conversation on https://flutlab.io/residents
+> Flutter(플러터)의 state management(상태관리)를 하는 방법 중 하나인 GetX의 사용법</br>
+> 🔗 [코딩셰프 - 플러터(Flutter) GetX 강의](https://youtube.com/playlist?list=PLQt_pzi-LLfo1L1NEQDAk3HNRkWZ5VcCJ&si=81zD2DMj6lhPL4r5)<br>
+> 🔗 [dbestech - Flutter Getx State Management Tutorial](https://youtu.be/uki8BS7xEug?si=iaIQ9QtY0hgO5uRm)
