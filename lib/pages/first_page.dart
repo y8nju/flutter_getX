@@ -11,7 +11,7 @@ class FirstPage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        forceMaterialTransparency: true,
+        // forceMaterialTransparency: true,
         title: const Text('First Page'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
@@ -31,7 +31,7 @@ class FirstPage extends StatelessWidget {
               builder: (_) {
                 return Container(
                   width: double.maxFinite,
-                  height: 100,
+                  height: 80,
                   margin: const EdgeInsets.all(20),
                   child: Center(
                     child: Text(
@@ -49,7 +49,7 @@ class FirstPage extends StatelessWidget {
               onTap: () => controller.decreaseX(),
               child: Container(
                 width: double.maxFinite,
-                height: 100,
+                height: 80,
                 margin: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),

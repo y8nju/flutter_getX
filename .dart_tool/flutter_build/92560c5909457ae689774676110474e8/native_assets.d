@@ -1,0 +1,1 @@
+ C:\\test\\flutter\\flutter_getX\\.dart_tool\\flutter_build\\92560c5909457ae689774676110474e8\\native_assets.yaml: 

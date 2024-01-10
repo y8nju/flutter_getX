@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_begginer/controllers/tap_controller.dart';
 import 'package:getx_begginer/pages/third_page.dart';
 
 class SecondPage extends StatelessWidget {
-  final TapController controller = Get.find();
-  SecondPage({super.key});
+  const SecondPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        forceMaterialTransparency: true,
+        // forceMaterialTransparency: true,
         title: const Text('Second Page'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
@@ -27,11 +25,11 @@ class SecondPage extends StatelessWidget {
         child: Center(
           child: GestureDetector(
             onTap: () {
-              Get.to(() => ThirdPage());
+              Get.to(() => const ThirdPage());
             },
             child: Container(
               width: double.maxFinite,
-              height: 100,
+              height: 80,
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),

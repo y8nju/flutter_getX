@@ -5,7 +5,7 @@ import 'package:getx_begginer/pages/first_page.dart';
 import 'package:getx_begginer/pages/second_page.dart';
 
 class MyHomePage extends StatelessWidget {
-  final TapController controller = Get.put(TapController());
+  TapController controller = Get.find();
 
   MyHomePage({super.key});
 
@@ -23,8 +23,11 @@ class MyHomePage extends StatelessWidget {
                 builder: (_) {
               return Container(
                 width: double.maxFinite,
-                height: 100,
-                margin: const EdgeInsets.all(20),
+                height: 80,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.green[200],
@@ -44,8 +47,11 @@ class MyHomePage extends StatelessWidget {
               onTap: () => controller.increaseX(),
               child: Container(
                 width: double.maxFinite,
-                height: 100,
-                margin: const EdgeInsets.all(20),
+                height: 80,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.green[200],
@@ -62,12 +68,17 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () => Get.to(FirstPage()),
+              onTap: () {
+                Get.to(() => FirstPage());
+              },
               // Get.to(page): page로 이동
               child: Container(
                 width: double.maxFinite,
-                height: 100,
-                margin: const EdgeInsets.all(20),
+                height: 80,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.red[100],
@@ -84,11 +95,16 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () => Get.to(SecondPage()),
+              onTap: () {
+                Get.to(() => const SecondPage());
+              },
               child: Container(
                 width: double.maxFinite,
-                height: 100,
-                margin: const EdgeInsets.all(20),
+                height: 80,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.amber[200],
@@ -108,8 +124,11 @@ class MyHomePage extends StatelessWidget {
               onTap: () {},
               child: Container(
                 width: double.maxFinite,
-                height: 100,
-                margin: const EdgeInsets.all(20),
+                height: 80,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.green[200],
